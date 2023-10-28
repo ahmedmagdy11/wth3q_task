@@ -22,6 +22,12 @@ class AppServiceProvider extends ServiceProvider {
             'App\Repositories\Product\ProductRepositoryInterface',
             'App\Repositories\Product\ProductRepository'
         );
+
+        //Register User Repository
+        $this->app->bind(
+            'App\Repositories\User\UserRepositoryInterface',
+            'App\Repositories\User\UserRepository'
+        );
     }
 
     /**
