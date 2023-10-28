@@ -3,6 +3,8 @@
 namespace App\Repositories\User;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface {
     private $user;
@@ -27,6 +29,8 @@ class UserRepository implements UserRepositoryInterface {
             'is_active',
             'password',
         ]);
+        // hash password 
+        $data['password'] = Hash::make($data['password']);
         return $this->user->create($data);
     }
 
@@ -39,6 +43,9 @@ class UserRepository implements UserRepositoryInterface {
             'password',
         ]);
         $user = $this->user->find($id);
+        if (Arr::has($data, 'password')) {
+            $data['password'] = Hash::make($data['password']);
+        }
         return $user->update($data);
     }
 
