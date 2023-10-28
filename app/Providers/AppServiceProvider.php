@@ -16,6 +16,12 @@ class AppServiceProvider extends ServiceProvider {
             'App\Repositories\Auth\AuthRepositoryInterface',
             'App\Repositories\Auth\AuthRepository'
         );
+
+        //Register Product Repository
+        $this->app->bind(
+            'App\Repositories\Product\ProductRepositoryInterface',
+            'App\Repositories\Product\ProductRepository'
+        );
     }
 
     /**
