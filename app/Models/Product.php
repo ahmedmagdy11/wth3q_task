@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,15 @@ class Product extends Model {
             return $value;
         }
         return asset('storage/' . $value);
+    }
+
+    public function getPriceAttribute($value)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return $value;
+        }
+        $discount_percentage = UserType::discount($user->type) / 100;
+        return $value - ($value * $discount_percentage);
     }
 }

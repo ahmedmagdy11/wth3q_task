@@ -15,4 +15,18 @@ final class UserType {
             self::GOLD,
         ];
     }
+    // discount for each type
+
+    public static function discount($type) {
+        switch ($type) {
+            case self::NORMAL:
+                return 0;
+            case self::SILVER:
+                return 5;
+            case self::GOLD:
+                return 10;
+            default:
+                return 0;
+        }
+    }
 }

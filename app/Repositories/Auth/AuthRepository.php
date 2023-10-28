@@ -21,7 +21,7 @@ class AuthRepository implements AuthRepositoryInterface {
             return null;
         }
 
-        $token = JWTAuth::fromUser($user);
+        $token =  $user->createToken('auth_token')->accessToken;
         return [
             'access_token' => $token,
         ];

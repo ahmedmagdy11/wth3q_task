@@ -61,4 +61,5 @@ class ProductRepository implements ProductRepositoryInterface {
     public function delete($id) {
         return $this->product->destroy($id);
     }
+
 }

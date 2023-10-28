@@ -27,6 +27,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 
-Route::resource('users', UserController::class);
-
-Route::resource('products', ProductController::class);
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+});
